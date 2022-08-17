@@ -7,9 +7,9 @@ Tang Nano 1kで遊ぶRISC-V的なCPU
 完全なRISC-V32E仕様の適合は、保証しません。
 
 Tang Nano 1kに搭載するために、無駄な仕様の一部を削減しています。
-・プログラムカウンタ　32bit　→　16bit
-・J-immの有効長　20bit → 18bit
-・FENCEはNOPとして実装
+- プログラムカウンタ　32bit　→　16bit
+- J-immの有効長　20bit → 18bit
+- FENCEはNOPとして実装
 
 GW1NZ-LV1が持つBSRAMの４個の内、２ブロックは汎用レジスタ、一部のCSRレジスタとして使用しています。
 残りの２ブロックがメインメモリになります。
@@ -28,7 +28,7 @@ Tang Nano 1kはGW1NZ-LV1というICを使っています。
 
 Gowin IDE
 ------------------------
-Gowin_V1.9.8.07にてGW1NZ-LV1用のDual Port RAMのIP作成および論理合成。配置・配線。
+Gowin_V1.9.8.07にてGW1NZ-LV1用のDual Port RAMのIP作成および論理合成と配置・配線。
 Sipeedの[Programmer](https://dl.sipeed.com/shareURL/TANG/programmer)にて書き込み。
 
 
