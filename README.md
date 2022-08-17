@@ -10,7 +10,7 @@ Tang Nano 1kで遊ぶRISC-V的なCPU
 
 Tang Nano 1kに搭載するために、無駄な仕様の一部を削減しています。
 - プログラムカウンタ　32bit　→　16bit
-- J-immの有効長　20bit → 18bit
+- J-immの有効長　21bit → 18bit
 - FENCEはNOPとして実装
 
 GW1NZ-LV1が持つBSRAMの４個の内、２ブロックは汎用レジスタ、一部のCSRレジスタとして使用しています。
