@@ -234,13 +234,13 @@ module rv32core_test( input wire reset,clk,NMI_S,INT_S , input wire [31:0] inst_
 	assign cndtn[2'b11] = alu_sel[2'd3][0];
 	wire BRANCH_T = CODE_BRCH&(cndtn[BRCH_sub] != compliment ) ;
 
-	wire [2:0] sel_pc =	(NMI_int_en)? 3'd7: //NMI
-								(stg==3'd7) ? 3'd6: //interrupt/except
-								(CODE_MRET) ? 3'd5: //MRET
-								(CODE_JALR) ? 3'd1: //x + i
-								(CODE_JAL)  ? 3'd2: //jump
-								(BRANCH_T)  ? 3'd0: //branch
-												  3'd4; //pc+4
+	wire [2:0] sel_pc =	(stg==3'd7) ? ( (NMI_int_en)? 3'd7 : //NMI
+							      3'd6): //interrupt/except
+						 (CODE_MRET) ? 3'd5: //MRET
+						 (CODE_JALR) ? 3'd1: //x + i
+						 (CODE_JAL)  ? 3'd2: //jump
+						 (BRANCH_T)  ? 3'd0: //branch
+							       3'd4; //pc+4
 	assign sel_p[3'd0] = B_imm[31:0];
 	assign sel_p[3'd1] = I_imm[31:0];
 	assign sel_p[3'd2] = J_imm[31:0];
