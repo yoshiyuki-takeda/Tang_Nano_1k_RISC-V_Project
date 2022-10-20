@@ -1,8 +1,5 @@
 # Tang_Nano_1k_RISC-V_Project
 
-
-Tang Nano 1kで遊ぶRISC-Vコア
-======================================
 # [Tang Nano 1k](https://ja.aliexpress.com/item/1005002551785169.html?channel=twinner)(FPGA:GW1NZ-LV1 QN48C6/I5)用のRISC-Vプロジェクト
 
 [RISC-V](http://riscv.org/)の仕様に基づいて実装した、RISC-V32Iコアです。
