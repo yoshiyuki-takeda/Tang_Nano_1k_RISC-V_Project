@@ -1,0 +1,54 @@
+[
+ {
+  "InstFile" : "C:/Intel_FPGA_Project/TangNano1k_SoC_project/src/TangNano1k_SoC.v",
+  "InstLine" : 546,
+  "InstName" : "Soc",
+  "ModuleFile" : "C:/Intel_FPGA_Project/TangNano1k_SoC_project/src/TangNano1k_SoC.v",
+  "ModuleLine" : 546,
+  "ModuleName" : "Soc",
+  "SubInsts" : [
+   {
+    "InstFile" : "C:/Intel_FPGA_Project/TangNano1k_SoC_project/src/TangNano1k_SoC.v",
+    "InstLine" : 562,
+    "InstName" : "cpu1",
+    "ModuleFile" : "C:/Intel_FPGA_Project/TangNano1k_SoC_project/src/TangNano1k_SoC.v",
+    "ModuleLine" : 20,
+    "ModuleName" : "rv32core_udonkoA",
+    "SubInsts" : [
+     {
+      "InstFile" : "C:/Intel_FPGA_Project/TangNano1k_SoC_project/src/TangNano1k_SoC.v",
+      "InstLine" : 208,
+      "InstName" : "general_register_inst",
+      "ModuleFile" : "C:/Intel_FPGA_Project/TangNano1k_SoC_project/src/gowin_dpb/gene_reg.v",
+      "ModuleLine" : 9,
+      "ModuleName" : "g_rega"
+     }
+    ]
+   },
+   {
+    "InstFile" : "C:/Intel_FPGA_Project/TangNano1k_SoC_project/src/TangNano1k_SoC.v",
+    "InstLine" : 568,
+    "InstName" : "bm1",
+    "ModuleFile" : "C:/Intel_FPGA_Project/TangNano1k_SoC_project/src/TangNano1k_SoC.v",
+    "ModuleLine" : 491,
+    "ModuleName" : "bus_master"
+   },
+   {
+    "InstFile" : "C:/Intel_FPGA_Project/TangNano1k_SoC_project/src/TangNano1k_SoC.v",
+    "InstLine" : 572,
+    "InstName" : "ram1",
+    "ModuleFile" : "C:/Intel_FPGA_Project/TangNano1k_SoC_project/src/TangNano1k_SoC.v",
+    "ModuleLine" : 360,
+    "ModuleName" : "EXT_RAM"
+   },
+   {
+    "InstFile" : "C:/Intel_FPGA_Project/TangNano1k_SoC_project/src/TangNano1k_SoC.v",
+    "InstLine" : 580,
+    "InstName" : "pripheral1",
+    "ModuleFile" : "C:/Intel_FPGA_Project/TangNano1k_SoC_project/src/TangNano1k_SoC.v",
+    "ModuleLine" : 381,
+    "ModuleName" : "Super_IO"
+   }
+  ]
+ }
+]
