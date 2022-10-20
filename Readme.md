@@ -1,7 +1,7 @@
 # [Tang Nano 1k](https://ja.aliexpress.com/item/1005002551785169.html?channel=twinner)(FPGA:GW1NZ-LV1 QN48C6/I5)用のRISC-Vプロジェクト
 
 [RISC-V](http://riscv.org/)の仕様に基づいて実装した、RISC-V32Iコアです。  
-GW1NZ-LV1へRV32Iを搭載するために、実用上問題ない範囲で仕様の一部を変更してます。
+GW1NZ-LV1へRV32Iを搭載するために、実用上問題ない範囲で仕様から一部を変更してます。
 - プログラムカウンタ　32bit　→　16bit
 - J-immの有効長　21bit → 18bit
 - FENCEはNOPとして実装
