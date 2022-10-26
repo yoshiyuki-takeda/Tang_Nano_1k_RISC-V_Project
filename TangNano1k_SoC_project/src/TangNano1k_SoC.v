@@ -315,7 +315,7 @@ module rv32core_udonkoA( input wire reset,clk,NMI_S,INT_S , input wire [31:0] in
 		if( san ) begin
 			case( csr_addr[7:0] )
 				8'h00 : csr_value = { 19'd0,2'b11,3'd0,MPIE_bit,3'd0,MIE_bit,3'd0 }; // mstatus		Machine status register.
-				8'h01 : csr_value = { 2'b01 , 4'b0000 , 26'b00_0000_0000_0000_0000_0001_0000 };  // misa		ISA and extensions
+				8'h01 : csr_value = { 2'b01 , 4'b0000 , 26'b00_0000_0000_0000_0001_0000_0000 };  // misa		ISA and extensions
 				8'h04 : csr_value = { 20'd0 , MEIE_bit , 11'd0 }; // mie			Machine interrupt-enable register.
 				8'h05 : csr_value = INT_VECTOR; // mtvec			Machine trap-handler base address.
 				8'h40 : csr_value = x2;//mscratch; // mscratch		Scratch register for machine trap handlers.
