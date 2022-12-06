@@ -17,7 +17,7 @@ BlockRAM：4/4（2個：汎用レジスタ、2個：メインメモリ(4096バ�
 プロジェクトのコンパイル
 ------------------------
 論理合成。配置・配線ツール：[Gowin_V1.9.8.07](http://www.gowinsemi.com.cn/solution_view.aspx?FId=n25:25:25&Id=563)(ページの下の方)  
-FPGAへの書き込みツール：[Programmer](https://dl.sipeed.com/shareURL/TANG/programmer)  
+FPGAへの書き込みツール：[Programmer](https://dl.sipeed.com/shareURL/TANG/Nano/IDE)  
 Gowin標準のProgrammerではデバイスを認識しません。
 
 
