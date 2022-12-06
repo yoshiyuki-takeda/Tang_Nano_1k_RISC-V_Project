@@ -22,7 +22,7 @@ module rv32core_udonkoA( input wire reset,clk,NMI_S,INT_S , input wire [31:0] in
 							 output wire [14:0] outcode );
 	parameter RESET_VECTOR = 16'h0000;
 	parameter NMI_VECTOR = 32'h0060_0230;
-	parameter INT_VECTOR = 32'h0000_0040;
+	parameter INT_VECTOR = 32'h0000_0040; /* 割り込み使用時は割り込みのエントリポイントのアドレスへ変更する */
 
 	wire [31:0] inst;
 	wire [4:0] rd,rs1,rs2;
