@@ -84,7 +84,7 @@ module rv32core_udonkoA( input wire reset,clk,NMI_S,INT_S , input wire [31:0] in
 	assign csr_imm		= { 27'd0 , inst[19:15] };
 	assign csr_addr	= inst[31:20];
 
-	wire [31:0] x1,x2;
+	re [31:0] x1,x2;
 	reg [31:0] shiftr;
 	reg [15:0] pc;
 	reg [2:0]  stg; // 0:pc set 1:
@@ -205,25 +205,24 @@ module rv32core_udonkoA( input wire reset,clk,NMI_S,INT_S , input wire [31:0] in
 	wire [5:0] reg1addr = { CODE_MRET , (CODE_MRET)? 5'd1:x1xd };
 	wire reg1en = we_csr&(x1xd!=5'd0);
 	
-	g_rega	general_register_inst (
-        .clka(clk), //input clka
-        .ocea(1'b1), //input ocea
-        .cea(1'b1), //input cea
-        .reseta(~reset), //input reseta
-        .ada( reg1addr ), //input [5:0] ada
-        .dina( csr_value ), //input [31:0] dina
-        .wrea( reg1en ), //input wrea
-        .douta( x1 ), //output [31:0] douta
+    	reg [31:0] greg[0:35];
 
-        .clkb(clk), //input clkb
-        .oceb(1'b1), //input oceb
-        .ceb(1'b1), //input ceb
-        .resetb(~reset), //input resetb
-        .adb( reg2addr ), //input [5:0] adb
-        .dinb( xd ), //input [31:0] dinb
-        .wreb( reg2en ), //input wreb
-        .doutb( x2 ) //output [31:0] doutb
-	);
+    	always @(posedge clk) begin
+            x1 <= greg[reg1addr];
+            if(reg1en)
+                greg[reg1addr] <= csr_value;
+    	end
+    	always @(posedge clk) begin
+            x2 <= greg[reg2addr];
+            if(reg2en)
+                greg[reg2addr] <= xd;
+	    end
+
+	integer k; //レジスタ初期化
+	initial begin
+	    for( k=0 ; k<36 ; k=k+1 )
+		greg[k] = 32'd0;
+	end
 	
 	//メモリアクセスの処理
 	assign data_addr = x1 + { { I_imm[31:5] } , { (CODE_LOAD) ? I_imm[4:0] : S_imm[4:0] } } ;
@@ -358,21 +357,31 @@ endmodule
 
 /* メインメモリ */
 module EXT_RAM( input wire [31:0] d2, addr1 , addr2 , input wire clk, we, reset , 
-																		output reg [31:0] q1 , q2 );
-	parameter MEM_DEPTH = 1024;
-	reg [31:0] mem[MEM_DEPTH-1:0];
+                output wire [31:0] q1 , q2 );
+	reg [31:0] md1,md2;
+	wire [31:0] din2;
+	wire we2;
+	wire [9:0] ad1,ad2;
+	reg [31:0] mem[0:1023];
 
+	assign q1 = md1;
+	assign q2 = md2;
+	assign we2 = we;
+	assign din2 = d2;
+	assign ad1 = addr1[11:2];
+	assign ad2 = addr2[11:2];
+	
 	always @(posedge clk) begin
-		q1 <= mem[addr1[11:2]];
-		q2 <= mem[addr2[11:2]];
-		if( we )begin
-			mem[addr2[11:2]] <= d2;
+		md1 <= mem[ ad1 ];
+		md2 <= mem[ ad2 ];
+		if( we2 )begin
+			mem[ ad2 ] <= din2;
 		end
 	end
 
 	//初期化 	
 	initial begin	
-		$readmemh("mem.hex", mem);
+		$readmemh("mem.hex", mem); /* mem.hexを入れ替えて、様々なサンプルをご利用ください。 */
 	end
 
 endmodule
