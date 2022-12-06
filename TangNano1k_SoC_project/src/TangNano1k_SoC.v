@@ -84,7 +84,7 @@ module rv32core_udonkoA( input wire reset,clk,NMI_S,INT_S , input wire [31:0] in
 	assign csr_imm		= { 27'd0 , inst[19:15] };
 	assign csr_addr	= inst[31:20];
 
-	re [31:0] x1,x2;
+	reg [31:0] x1,x2;
 	reg [31:0] shiftr;
 	reg [15:0] pc;
 	reg [2:0]  stg; // 0:pc set 1:
