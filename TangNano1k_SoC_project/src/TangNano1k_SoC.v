@@ -1,6 +1,6 @@
 // Tang Nano 1kに収めるRISC-Vプロセッサ
 //
-// Version　00　
+// うどん粉コア Version　01　
 // RISC-VコアのABI : RV32I
 //
 // Copyright 2022 竹田 良之
