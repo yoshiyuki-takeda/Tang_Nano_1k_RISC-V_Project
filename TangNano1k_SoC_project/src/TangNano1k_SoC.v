@@ -191,7 +191,7 @@ module rv32core_udonkoA( input wire reset,clk,NMI_S,INT_S , input wire [31:0] in
 	assign xd_sel[2'd3] = lms[ACC_Width];
 	assign xd_sel[2'd2] = ALU_out;
 	assign xd_sel[2'd1] = csr_nn;
-	assign xd_sel[2'd0] = ( (stg==3'd7)? { NMI_S|INT_S , 26'd0, Ecode} : ((stg!=3'd6)&CODE_LUI)? 0 : {14'd0,pc,2'd0}) + ((CODE_AUIPC|CODE_LUI) ? U_imm : (stg>=3'd6) ? 0 : 4 ) ;
+	assign xd_sel[2'd0] = ( (stg==3'd7)? { NMI_S|INT_S , 26'd0, Ecode} : ((stg!=3'd6)&CODE_LUI)? 0 : {14'd0,pc,2'd0}) + ((stg>=3'd6) ? 0 : (CODE_AUIPC|CODE_LUI) ? U_imm : 4 ) ;
 	
 	assign xd_sn = ((stg==3'd6)|(stg==3'd7))? 2'd0 : (CODE_LOAD)? 2'd3 : (CODE_ALUR|CODE_ALUI)? 2'd2 : (CODE_CSR)? 2'd1 :  2'd0;
 	assign xd = xd_sel[xd_sn];
