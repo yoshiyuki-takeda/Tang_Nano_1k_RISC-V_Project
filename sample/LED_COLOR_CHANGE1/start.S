@@ -1,37 +1,40 @@
 
-        .section .text.init;
-        .globl _start;
-_start: /* 汎用レジスタの初期化 */
-  li x1, 0;
-  li x2, 0;
-  li x3, 0;
-  li x4, 0;
-  li x5, 0;
-  li x6, 0;
-  li x7, 0; 
-  li x8, 0;
-  li x9, 0;
-  li x10, 0;
-  li x11, 0;
-  li x12, 0;
-  li x13, 0;
-  li x14, 0;
-  li x15, 0;
-  li x16, 0;
-  li x17, 0;
-  li x18, 0;
-  li x19, 0;
-  li x20, 0;
-  li x21, 0;
-  li x22, 0;
-  li x23, 0;
-  li x24, 0;
-  li x25, 0;
-  li x26, 0;
-  li x27, 0;
-  li x28, 0;
-  li x29, 0;
-  li x30, 0;
-  li x31, 0;
-  li sp, 0xffc; /* スタックポインタをメインメモリの最終番地に設定 */
-  call main
+.extern _stack_top        /* スタック先頭アドレス */
+.extern _load_data_top    /* .dataセクションのコピー元のアドレス */
+.extern _start_data_addr  /* .dataセクションの先頭アドレス */
+.extern _end_data_addr    /* .dataセクションの終端アドレス 兼 .bssセクションの先頭アドレス */
+.extern _end_bss_addr     /* .dataセクションの終端アドレス */
+.extern main              /* メイン関数 */
+
+        .section .text.init
+        .globl _start
+  /* li 即値,la ラベル値 */
+_start:
+  la sp,_stack_top   /* スタックポインタをメインメモリの最終番地に設定 */
+  
+_copy_initial_data:  /* .dataセクションの初期化 */
+  la t0,_load_data_top
+  la t1,_start_data_addr
+  la t2,_end_data_addr
+_loop_copy_initial_data:
+  beq t1,t2,_init_bss
+  lw  t3,0(t0)
+  sw  t3,0(t1)
+  addi t0,t0,4
+  addi t1,t1,4
+  j _loop_copy_initial_data
+  
+_init_bss:  /* .bssセクションの初期化 */
+  la t1,_end_bss_addr
+_loop_init_bss:
+  beq t1,t2,_goto_main
+  sw  zero,0(t2)
+  addi t2,t2,4
+  j  _loop_init_bss
+  
+_goto_main:
+  j  main            /* メイン関数呼び出し */
+
+_infinite_loop:
+  j  _infinite_loop
+
